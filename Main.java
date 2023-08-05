@@ -1,22 +1,33 @@
 public class Main {
     public static void main(String[] args) {
+        String bulletIt = "Print a Bulleted List:\n" +
+                "\t\u2022 First Point\n" +
+                "\t\t\u2022 Sub Point";
 
-        Animal animal = new Animal("Generic Animal", "Huge", 400);
-        doAnimalStuff(animal, "slow");
+        System.out.println(bulletIt);
 
-        Dog dog = new Dog();
-        doAnimalStuff(dog, "fast");
+        String textBlock = """
+                Print a Bulleted List:
+                        \u2022 First Point
+                            \u2022 Sub Point""";
+        System.out.println(textBlock);
 
-        Dog yorkie = new Dog("Yorkie", 15);
-        doAnimalStuff(yorkie, "fast");
-        Dog retriever = new Dog("Labrador Retriever", 65, "Floppy", "Swimmer");
-        doAnimalStuff(retriever, "slow");
-    }
+        int age = 35;
+        System.out.printf("Your age is %d%n", age);
 
-    public static void doAnimalStuff(Animal animal, String speed) {
-        animal.makeNoise();
-        animal.move(speed);
-        System.out.println(animal);
-        System.out.println("____");
+        int yearOfBirth = 2023 - age;
+        System.out.printf("Age = %d, Birth year = %d%n", age, yearOfBirth);
+
+        System.out.printf("Your age is %.2f%n", (float) age);
+
+        for (int i = 1; i <= 10000; i *= 10) {
+            System.out.printf("Printing %6d %n", i);
+        }
+
+        String formattedString = String.format("Your age is %d", age);
+        System.out.println(formattedString);
+
+        formattedString = "Your age is %d".formatted(age);
+        System.out.println(formattedString);
     }
 }
