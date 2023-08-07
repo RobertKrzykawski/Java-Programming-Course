@@ -1,50 +1,13 @@
-public class Main extends Object {
+public class Main {
     public static void main(String[] args) {
+        ComputerCase theCase = new ComputerCase("2208", "Dell", "240");
+        Monitor theMonitor = new Monitor("27inch Beast", "Acer", 27, "2540 x 1440");
+        Motherboard theMotherboard = new Motherboard("BJ-200", "Asus", 4, 6, "v2.44");
+        PersonalComputer thePC = new PersonalComputer("2208", "Dell", theCase, theMonitor, theMotherboard);
 
-        Student max = new Student("Max", 21);
-        System.out.println(max);
-
-        PrimarySchoolStudent jimmy = new PrimarySchoolStudent("Jimmy", 8, "Carole");
-        System.out.println(jimmy);
-    }
-}
-
-class Student {
-
-    private String name;
-    private int age;
-
-    Student(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
-
-//    @Override
-//    public String toString() {
-//        return super.toString();
-//    }
-
-
-    @Override
-    public String toString() {
-        return name + " is " + age;
-//        return "Student{" +
-//                "name='" + name + '\'' +
-//                ", age=" + age +
-//                '}';
-    }
-}
-
-class PrimarySchoolStudent extends Student {
-    private String parentName;
-
-    PrimarySchoolStudent(String name, int age, String parentName) {
-        super(name, age);
-        this.parentName = parentName;
-    }
-
-    @Override
-    public String toString() {
-        return parentName + "'s kid, " + super.toString();
+//        thePC.getMonitor().drawPixelAt(10, 10, "red");
+//        thePC.getMotherboard().loadProgram("Windows OS");
+//        thePC.getComputerCase().pressPowerButton();
+        thePC.powerUp();
     }
 }
