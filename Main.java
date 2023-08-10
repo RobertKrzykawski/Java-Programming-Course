@@ -1,50 +1,28 @@
-public class Main extends Object {
+public class Main {
     public static void main(String[] args) {
+//        Item coke = new Item("drink", "coke", 1.50);
+//        coke.printItem();
+//        coke.setSize("LARGE");
+//        coke.printItem();
+//
+//        Item avocado = new Item("Topping", "avocado", 1.50);
+//        avocado.printItem();
+//        Burger burger = new Burger("regular", 4.00);
+//        burger.addToppings("BACON", "CHEESE", "MAYO");
+//        burger.printItem();
 
-        Student max = new Student("Max", 21);
-        System.out.println(max);
+//        MealOrder regularMeal = new MealOrder();
+//        regularMeal.addBurgerToppings("BACON", "CHEESE", "MAYO");
+//        regularMeal.setDrinkSize("LARGE");
+//        regularMeal.printItemizedList();
 
-        PrimarySchoolStudent jimmy = new PrimarySchoolStudent("Jimmy", 8, "Carole");
-        System.out.println(jimmy);
-    }
-}
-
-class Student {
-
-    private String name;
-    private int age;
-
-    Student(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
-
-//    @Override
-//    public String toString() {
-//        return super.toString();
-//    }
-
-
-    @Override
-    public String toString() {
-        return name + " is " + age;
-//        return "Student{" +
-//                "name='" + name + '\'' +
-//                ", age=" + age +
-//                '}';
-    }
-}
-
-class PrimarySchoolStudent extends Student {
-    private String parentName;
-
-    PrimarySchoolStudent(String name, int age, String parentName) {
-        super(name, age);
-        this.parentName = parentName;
-    }
-
-    @Override
-    public String toString() {
-        return parentName + "'s kid, " + super.toString();
+//        MealOrder secondMeal = new MealOrder("turkey", "7-up", "chilli");
+//        secondMeal.addBurgerToppings("LETTUCE", "CHEESE", "MAYO");
+//        secondMeal.setDrinkSize("SMALL");
+//        secondMeal.printItemizedList();
+        MealOrder deluxeMeal = new MealOrder("deluxe", "7-up", "chilli");
+        deluxeMeal.addBurgerToppings("AVOCADO", "BACON", "LETTUCE", "CHESSE", "MAYO");
+        deluxeMeal.setDrinkSize("SMALL");
+        deluxeMeal.printItemizedList();
     }
 }
