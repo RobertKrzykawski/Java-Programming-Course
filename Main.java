@@ -1,33 +1,47 @@
+package dev.lpa;
+
+import java.sql.SQLOutput;
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
-        String bulletIt = "Print a Bulleted List:\n" +
-                "\t\u2022 First Point\n" +
-                "\t\t\u2022 Sub Point";
+        int[] myInyArray = new int[10];
+        myInyArray[0] = 45;
+        myInyArray[1] = 1;
+        myInyArray[5] = 50;
 
-        System.out.println(bulletIt);
+        double[] myDoubleArray = new double[10];
+        myDoubleArray[2] = 3.5;
+        System.out.println(myDoubleArray[2]);
 
-        String textBlock = """
-                Print a Bulleted List:
-                        \u2022 First Point
-                            \u2022 Sub Point""";
-        System.out.println(textBlock);
+        int[] firstTen = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        System.out.println("first = " + firstTen[0]);
+        int arrayLength = firstTen.length;
+        System.out.println("length of array = " + arrayLength);
+        System.out.println("last = " + firstTen[arrayLength - 1]);
 
-        int age = 35;
-        System.out.printf("Your age is %d%n", age);
-
-        int yearOfBirth = 2023 - age;
-        System.out.printf("Age = %d, Birth year = %d%n", age, yearOfBirth);
-
-        System.out.printf("Your age is %.2f%n", (float) age);
-
-        for (int i = 1; i <= 10000; i *= 10) {
-            System.out.printf("Printing %6d %n", i);
+        int[] newArray;
+//        newArray = new int[]{5, 4, 3, 2, 1};
+        newArray = new int[5];
+        for (int i = 0; i < newArray.length; i++) {
+            newArray[i] = newArray.length - i;
+        }
+        for (int i = 0; i < newArray.length; i++) {
+            System.out.print(newArray[i] + " ");
+        }
+        System.out.println();
+        for (int element : newArray) {
+            System.out.print(element + " ");
+        }
+        System.out.println();
+        System.out.println(Arrays.toString(newArray));
+        Object objectVariable = newArray;
+        if (objectVariable instanceof int[]) {
+            System.out.println("objectVariable is really an int array");
         }
 
-        String formattedString = String.format("Your age is %d", age);
-        System.out.println(formattedString);
-
-        formattedString = "Your age is %d".formatted(age);
-        System.out.println(formattedString);
+        Object[] objectArray = new Object[3];
+        objectArray[0] = "Hello";
+        objectArray[1] = new StringBuilder("World");
     }
 }
