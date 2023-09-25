@@ -1,78 +1,37 @@
 package dev.lpa;
 
-interface Player {
-    String name();
-}
+import dev.lpa.model.LPAStudent;
+import dev.lpa.model.LPAStudentComparator;
+import dev.lpa.util.QueryList;
 
-record BaseballPlayer(String name, String position) implements Player {}
-
-record FootballPlayer(String name, String position) implements Player {}
-
-record VolleyballPlayer(String name, String position) implements Player {}
+import java.util.Comparator;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        QueryList<LPAStudent> queryList = new QueryList<>();
+        for (int i = 0; i < 25; i++) {
+            queryList.add(new LPAStudent());
+        }
+        System.out.println("Ordered");
+        queryList.sort(Comparator.naturalOrder());
+        printList(queryList);
 
-        var philly = new Affiliation("city", "Philadelphia, PA", "US");
+        System.out.println("Matches");
+        var matches = queryList
+                .getMatches("PercentComplete", "50");
 
-        BaseballTeam phillies1 = new BaseballTeam("Philadelphia Phillies");
-        BaseballTeam astros1 = new BaseballTeam("Houston Astros");
-        scoreResult(phillies1, 3, astros1, 5);
+        matches.sort(new LPAStudentComparator());
+        printList(matches);
 
-        SportsTeam phillies2 = new SportsTeam("Philadelphia Phillies");
-        SportsTeam astros2 = new SportsTeam("Houston Astros");
-        scoreResult(phillies2, 3, astros2, 5);
-
-        Team<BaseballPlayer, Affiliation> phillies = new Team<>("Philadelphia Phillies", philly);
-        Team<BaseballPlayer, Affiliation> astros = new Team<>("Houston Astros");
-        scoreResult(phillies, 3, astros, 5);
-
-        var harper = new BaseballPlayer("B Harper", "Right Fielder");
-        var marsh = new BaseballPlayer("B Marsh", "Right Fielder");
-        phillies.addTeamMember(harper);
-        phillies.addTeamMember(marsh);
-        var guthrie = new BaseballPlayer("D Guthrie", "Center Fielder");
-        phillies.addTeamMember(guthrie);
-        phillies.listTeamMembers();
-
-        SportsTeam afc1 = new SportsTeam("Adelaide Crows");
-        Team<FootballPlayer, String> afc = new Team<>("Adelaide Crows", "City of Adelaide, South Australia, in AU");
-        var tex = new FootballPlayer("Tex Walker", "Centre half forward");
-        afc.addTeamMember(tex);
-        var rory = new FootballPlayer("Rory Laird", "Midfield");
-        afc.addTeamMember(rory);
-        afc.listTeamMembers();
-
-        Team<VolleyballPlayer, Affiliation> adelaide = new Team<>("Adelaide Storm");
-        adelaide.addTeamMember(new VolleyballPlayer("N Roberts", "Setter"));
-        adelaide.listTeamMembers();
-
-        var canberra = new Team<VolleyballPlayer, Affiliation>("Canberra Heat");
-        canberra.addTeamMember(new VolleyballPlayer("B Black","Opposite"));
-        canberra.listTeamMembers();
-        scoreResult(canberra, 0, adelaide, 1);
-
-//        Team<Integer> melbourneVB = new Team<>("Melbourne Vipers");
+        System.out.println("Ordered");
+        matches.sort(null);
+        printList(matches);
     }
 
-    public static void scoreResult(BaseballTeam team1, int t1_score,
-                                   BaseballTeam team2, int t2_score) {
-        String message = team1.setScore(t1_score, t2_score);
-        team2.setScore(t2_score, t1_score);
-        System.out.printf("%s %s %s %n", team1, message, team2);
-    }
-
-    public static void scoreResult(SportsTeam team1, int t1_score,
-                                   SportsTeam team2, int t2_score) {
-        String message = team1.setScore(t1_score, t2_score);
-        team2.setScore(t2_score, t1_score);
-        System.out.printf("%s %s %s %n", team1, message, team2);
-    }
-
-    public static void scoreResult(Team team1, int t1_score,
-                                   Team team2, int t2_score) {
-        String message = team1.setScore(t1_score, t2_score);
-        team2.setScore(t2_score, t1_score);
-        System.out.printf("%s %s %s %n", team1, message, team2);
+    public static void printList(List<?> students) {
+        for (var student : students) {
+            System.out.println(student);
+        }
     }
 }
